@@ -2,7 +2,7 @@
 Selection Task for RnD portfolio, CGS
 <br>
 Here are the listed objectives of the task.
-<br>
+<br><br>
 To understand the differences in performance of CPU and GPU based on different parameters like size of data.
 <br>
 Learn GPU Programming using PyCUDA.
