@@ -1,5 +1,6 @@
 #include <iostream>
 #include<ctime>
+#define N 3
 using namespace std;
 __global__ void helloFromGPU() {
     printf("Hello from GPU!\n");
@@ -9,38 +10,46 @@ int random(){
     int randomNumber = rand() % 100 + 1;
     return randomNumber;
 }
-int main() {
-    //initialization
-    cudaEvent_t start,stop;
-    srand(time(0));
-    int matrixA[3][3];
-    int matrixB[3][3];
-    int matrixC[3][3]={0};
-    cudaEventCreate(&start);
-    cudaEventCreate(&stop);
-
-    //assigning random values to matrix
-    for(int i =0;i<3;i++){
-        for(int j=0;j<3;j++) matrixA[i][j]=random();
+void assignMatrix(int A[N][N]){
+    for(int i =0;i<N;i++){
+        for(int j=0;j<N;j++) A[i][j]=random();
     }
-    for(int i =0;i<3;i++){
-        for(int j=0;j<3;j++) matrixB[i][j]=random();
-    }
-
-    //matrix calculation using cpu and time measurement
-    cudaEventRecord(start,0);
-    for(int i =0;i<3;i++){
-        for(int j=0;j<3;j++){
-            for(int k=0;k<3;k++){
+}
+void multiplyCPU(int matrixA[N][N],int matrixB[N][N],int matrixC[N][N]){
+    for(int i =0;i<N;i++){
+        for(int j=0;j<N;j++){
+            for(int k=0;k<N;k++){
                 matrixC[i][j]+=matrixA[i][k]*matrixB[k][j];
             }
         };
     }
-    cout<<endl;
-    for(int i =0;i<3;i++){
-        for(int j=0;j<3;j++) cout<<matrixC[i][j]<<" ";
+}
+void printMatrix(int matrixA[N][N]){
+    for(int i =0;i<N;i++){
+        for(int j=0;j<N;j++) cout<<matrixA[i][j]<<" ";
         cout<<endl;
     }
+    cout<<endl;
+}
+int main() {
+    //initialization
+    cudaEvent_t start,stop;
+    srand(time(0));
+    int matrixA[N][N];
+    int matrixB[N][N];
+    int matrixC[N][N]={0};
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+    //assigning random values to matrix
+    assignMatrix(matrixA);
+    //printMatrix(matrixA);
+    assignMatrix(matrixB);
+    //printMatrix(matrixB);
+    //matrix calculation using cpu and time measurement
+    cudaEventRecord(start,0);
+    multiplyCPU(matrixA,matrixB,matrixC);
+    cout<<endl;
+    printMatrix(matrixC);
     //helloFromGPU<<<1, 1>>>();
     cudaEventRecord(stop,0);
     cudaEventSynchronize(stop);
