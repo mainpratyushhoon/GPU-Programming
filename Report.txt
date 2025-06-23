@@ -1,0 +1,125 @@
+PS C:\Users\lenovo\Desktop\My Files\KGP\RnD\GPU-Programming> ncu ./main.exe           
+==PROF== Connected to process 17188 (C:\Users\lenovo\Desktop\My Files\KGP\RnD\GPU-Programming\main.exe)
+
+==PROF== Profiling "multiplyGPU" - 0: 0%....50%....100% - 8 passes
+CPU TIME: 18.0992 ms
+GPU TIME: 305.927 ms
+==PROF== Disconnected from process 17188
+[17188] main.exe@127.0.0.1
+  multiplyGPU(int *, int *, int *) (13, 13, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 8.9
+    Section: GPU Speed Of Light Throughput
+    ----------------------- ----------- ------------
+    Metric Name             Metric Unit Metric Value
+    ----------------------- ----------- ------------
+    DRAM Frequency                  Ghz         8.18
+    SM Frequency                    Ghz         1.66
+    Elapsed Cycles                cycle     1,13,703
+    Memory Throughput                 %        67.23
+    DRAM Throughput                   %         2.42
+    Duration                         us        68.35
+    L1/TEX Cache Throughput           %        73.50
+    L2 Cache Throughput               %         9.37
+    SM Active Cycles              cycle  1,04,036.10
+    Compute (SM) Throughput           %        46.07
+    ----------------------- ----------- ------------
+
+    OPT   Memory is more heavily utilized than Compute: Look at the Memory Workload Analysis section to identify the L1
+          bottleneck. Check memory replay (coalescing) metrics to make sure you're efficiently utilizing the bytes
+          transferred. Also consider whether it is possible to do more work per memory access (kernel fusion) or
+          whether there are values you can (re)compute.                               
+
+
+    Section: Launch Statistics
+    -------------------------------- --------------- ---------------
+    Metric Name                          Metric Unit    Metric Value
+    -------------------------------- --------------- ---------------
+    Block Size                                                   256
+    Function Cache Configuration                     CachePreferNone
+    Grid Size                                                    169
+    Registers Per Thread             register/thread              40
+    Shared Memory Configuration Size           Kbyte           16.38
+    Driver Shared Memory Per Block       Kbyte/block            1.02
+    Dynamic Shared Memory Per Block       byte/block               0
+    Static Shared Memory Per Block        byte/block               0
+    # SMs                                         SM              20
+    Stack Size                                                 1,024
+    Threads                                   thread          43,264
+    # TPCs                                                        10
+    Enabled TPC IDs                                              all
+    Uses Green Context                                             0
+    Waves Per SM                                                1.41
+    -------------------------------- --------------- ---------------
+
+    OPT   Est. Speedup: 50%                                                           
+
+          A wave of thread blocks is defined as the maximum number of blocks that can be executed in parallel on the
+          target GPU. The number of blocks in a wave depends on the number of multiprocessors and the theoretical
+          occupancy of the kernel. This kernel launch results in 1 full waves and a partial wave of 49 thread blocks.
+          Under the assumption of a uniform execution duration of all thread blocks, this partial wave may account for
+          up to 50.0% of the total runtime of this kernel. Try launching a grid with no partial wave. The overall
+          impact of this tail effect also lessens with the number of full waves executed for a grid. See the Hardware
+          Model (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-hw-model) description for
+          more details on launch configurations.                                      
+
+
+    Section: Occupancy
+    ------------------------------- ----------- ------------
+    Metric Name                     Metric Unit Metric Value
+    ------------------------------- ----------- ------------
+    Block Limit SM                        block           24
+    Block Limit Registers                 block            6
+    Block Limit Shared Mem                block           16
+    Block Limit Warps                     block            6
+    Theoretical Active Warps per SM        warp           48
+    Theoretical Occupancy                     %          100
+    Achieved Occupancy                        %        69.63
+    Achieved Active Warps Per SM           warp        33.42
+    ------------------------------- ----------- ------------
+
+    OPT   Est. Local Speedup: 30.37%                                                  
+
+          The difference between calculated theoretical (100.0%) and measured achieved occupancy (69.6%) can be the
+          result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can
+          occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices
+          Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on
+          optimizing occupancy.                                                       
+
+
+    Section: GPU and Memory Workload Distribution
+    -------------------------- ----------- ------------
+    Metric Name                Metric Unit Metric Value
+    -------------------------- ----------- ------------
+    Average DRAM Active Cycles       cycle       13,552
+    Total DRAM Elapsed Cycles        cycle    16,77,312
+    Average L1 Active Cycles         cycle  1,04,036.10
+    Total L1 Elapsed Cycles          cycle    22,74,870
+    Average L2 Active Cycles         cycle    88,846.75
+    Total L2 Elapsed Cycles          cycle    12,07,020
+    Average SM Active Cycles         cycle  1,04,036.10
+    Total SM Elapsed Cycles          cycle    22,74,870
+    Average SMSP Active Cycles       cycle  1,04,001.25
+    Total SMSP Elapsed Cycles        cycle    90,99,480
+    -------------------------- ----------- ------------
+
+    OPT   Est. Speedup: 6.614%                                                        
+
+          One or more SMs have a much higher number of active cycles than the average number of active cycles.
+          Additionally, other SMs have a much lower number of active cycles than the average number of active cycles.
+          Maximum instance value is 7.23% above the average, while the minimum instance value is 6.02% below the
+          average.                                                                    
+
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Speedup: 6.627%                                                        
+
+          One or more SMSPs have a much higher number of active cycles than the average number of active cycles.
+          Additionally, other SMSPs have a much lower number of active cycles than the average number of active
+          cycles. Maximum instance value is 7.25% above the average, while the minimum instance value is 6.02% below
+          the average.                                                                
+
+    ----- --------------------------------------------------------------------------------------------------------------
+    OPT   Est. Speedup: 6.614%                                                        
+
+          One or more L1 Slices have a much higher number of active cycles than the average number of active cycles.
+          Additionally, other L1 Slices have a much lower number of active cycles than the average number of active
+          cycles. Maximum instance value is 7.23% above the average, while the minimum instance value is 6.02% below
+          the average.                                                                
