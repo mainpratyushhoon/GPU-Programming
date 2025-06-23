@@ -1,6 +1,6 @@
 #include <iostream>
 #include<ctime>
-#define N 200
+#define N 289
 
 using namespace std;
 __global__ void multiplyGPU(int *a,int* b,int *c) {
