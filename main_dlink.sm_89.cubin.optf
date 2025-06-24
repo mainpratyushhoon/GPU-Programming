@@ -1,1 +1,0 @@
--m64 --arch=sm_89 --register-link-binaries="main_dlink.reg.c"    "/LIBPATH:C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.9\bin/../lib/x64" -cpu-arch=X86_64 "main.obj"  cudadevrt.lib  -o "main_dlink.sm_89.cubin"
