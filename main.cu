@@ -20,7 +20,7 @@ int random(){
     int randomNumber = rand() % 10 + 1;
     return randomNumber;
 }
-void assignMatrix(int A[N]){
+void assignMatrix(int A[N*N]){
     for(int i =0;i<N*N;i++){
         A[i]=random();
     }
@@ -115,7 +115,7 @@ int main() {
     cudaDeviceSynchronize();
 
     check(C_cpu,C_gpu);
-    
+
     cudaFree(d_a);
     cudaFree(d_b);
     cudaFree(d_c);
