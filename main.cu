@@ -1,6 +1,6 @@
 #include <iostream>
 #include<ctime>
-#define N 289
+#define N 34237
 
 using namespace std;
 __global__ void multiplyGPU(int *a,int* b,int *c) {
@@ -19,9 +19,9 @@ int random(){
     int randomNumber = rand() % 10 + 1;
     return randomNumber;
 }
-void assignMatrix(int A[N][N]){
-    for(int i =0;i<N;i++){
-        for(int j=0;j<N;j++) A[i][j]=random();
+void assignMatrix(int A[N]){
+    for(int i =0;i<N*N;i++){
+        A[i]=random();
     }
 }
 void multiplyCPU(int matrixA[N][N],int matrixB[N][N],int matrixC[N][N]){
@@ -44,23 +44,23 @@ int main() {
     //initialization
     cudaEvent_t start,startG,stop,stopG;
     srand(time(0));
-    int matrixA[N][N];
-    int matrixB[N][N];
-    int matrixC[N][N]={0};
+    int *A,*B,*C;
     int *d_a,*d_b,*d_c;
-
+    A = (int *)malloc(N * N * sizeof(int));
+    B = (int *)malloc(N * N * sizeof(int));
+    C = (int *)malloc(N * N * sizeof(int));
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
 
     //assigning random values to matrix
-    assignMatrix(matrixA);
+    assignMatrix(A);
     //printMatrix(matrixA);
-    assignMatrix(matrixB);
+    assignMatrix(B);
     //printMatrix(matrixB);
 
     //matrix calculation using cpu and time measurement
     cudaEventRecord(start,0);
-    multiplyCPU(matrixA,matrixB,matrixC);
+    //multiplyCPU(matrixA,matrixB,matrixC);
     cout<<endl;
     //printMatrix(matrixC);
     
@@ -77,15 +77,15 @@ int main() {
     if(cudaMalloc((void**)&d_a,sizeof(int)*N*N)!=cudaSuccess) cout<<"No allocation of A";
     if(cudaMalloc((void**)&d_b,sizeof(int)*N*N)!=cudaSuccess) cout<<"No allocation of B";
     if(cudaMalloc((void**)&d_c,sizeof(int)*N*N)!=cudaSuccess) cout<<"No allocation of C";
-    if(cudaMemcpy(d_a,matrixA,sizeof(int)*N*N,cudaMemcpyHostToDevice)!=cudaSuccess) cout<<"No copy of A";
-    if(cudaMemcpy(d_b,matrixB,sizeof(int)*N*N,cudaMemcpyHostToDevice)!=cudaSuccess) cout<<"No copy of B";
+    if(cudaMemcpy(d_a,A,sizeof(int)*N*N,cudaMemcpyHostToDevice)!=cudaSuccess) cout<<"No copy of A";
+    if(cudaMemcpy(d_b,B,sizeof(int)*N*N,cudaMemcpyHostToDevice)!=cudaSuccess) cout<<"No copy of B";
     multiplyGPU<<<blocks, thread>>>(d_a,d_b,d_c);
     cudaError_t err = cudaGetLastError();
 if (err != cudaSuccess) {
     printf("CUDA kernel launch error: %s\n", cudaGetErrorString(err));
 }
 
-    cudaMemcpy(matrixC,d_c,sizeof(int)*N*N,cudaMemcpyDeviceToHost);
+    cudaMemcpy(C,d_c,sizeof(int)*N*N,cudaMemcpyDeviceToHost);
     cudaEventRecord(stopG,0);
     cudaEventSynchronize(stopG);
     float gpu=0;
