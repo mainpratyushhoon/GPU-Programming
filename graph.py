@@ -1,16 +1,15 @@
 import subprocess
 import matplotlib.pyplot as plt
 
-Ns = [i for i in range(1, 100)]  # N = 1, 2, 4, ..., 1024
+Ns = [i for i in range(1, 100)]
 cpu_times = []
 gpu_times = []
-gpu_time=0
+
 for N in Ns:
     cpu_time = gpu_time = 0
     for i in range(0,5):
         print(f"Running N = {N}")
         result = subprocess.run(["./main", str(N)], capture_output=True, text=True)
-        # You must print output like: "CPU TIME: <value> ms\nGPU TIME: <value> ms"
         lines = result.stdout.splitlines()
         for line in lines:
             if "CPU TIME" in line:
@@ -26,6 +25,7 @@ for N in Ns:
 
 # Plotting
 plt.figure(figsize=(10, 6))
+plt.axvline(x=64, color='grey', linestyle='--', label='Reference Line')
 plt.plot(Ns, cpu_times, label="CPU Time", marker="o")
 plt.plot(Ns, gpu_times, label="GPU Time", marker="o")
 plt.xlabel("Matrix Size (N x N)")

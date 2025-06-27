@@ -13,4 +13,4 @@ Selection Task for RnD Portfolio, CGS
 
 - CUDA
 - NVIDIA GPU (with CUDA support)
-- Profiling Tools (e.g., Nsight, nvprof)
+- Profiling Tools (e.g., N Compute)
