@@ -78,11 +78,11 @@ int main(int argc, char* argv[]){
     memset(C_gpu, 0, sizeof(int) * N * N);
 
     //matrix calculation using cpu and time measurement 
-    auto cpu_start = chrono::high_resolution_clock::now();
+    /*auto cpu_start = chrono::high_resolution_clock::now();
     multiplyCPU(A,B,C_cpu);
     cout<<endl;
     auto cpu_end = chrono::high_resolution_clock::now();
-    chrono::duration<double> cpu_duration = cpu_end - cpu_start;
+    chrono::duration<double> cpu_duration = cpu_end - cpu_start;*/
     
     //matrix calculation using gpu and time measurement
     cudaEventCreate(&startG);
@@ -111,7 +111,7 @@ int main(int argc, char* argv[]){
     float gpu=0;
     cudaEventElapsedTime(&gpu,startG,stopG);
 
-    cout << "CPU TIME: " << cpu_duration.count()*1000 << " ms" << endl <<"GPU TIME: "<<gpu<<" ms"<<endl;
+    cout <<"GPU TIME: "<<gpu<<" ms"<<endl;
     cudaDeviceSynchronize();
 
     check(C_cpu,C_gpu);
