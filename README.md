@@ -51,7 +51,7 @@
 <!-- UPDATE -->
 <div align="center">
   <a href="https://github.com/mainpratyushhoon/GPU-Programming.git">
-    <img width="80%" alt="image" src="https://github.com/mainpratyushhoon/GPU-Programming/blob/main/Image/Figure_1.png">
+    <img width="50%" alt="image" src="https://github.com/mainpratyushhoon/GPU-Programming/blob/main/Image/Figure_1.png">
   </a>
 </div>
 
@@ -98,15 +98,43 @@ _Now that the environment has been set up and configured to properly compile and
 <!-- USAGE EXAMPLES -->
 ## Usage
 <!-- UPDATE -->
-Use this space to show useful examples of how this project can be used. Additional screenshots, code examples and demos work well in this space.
+This project performs matrix multiplication of two square matrices (A × B = C), comparing performance between:
+  - CPU (sequential)
+  - GPU using CUDA (parallel)
+
+### It helps evaluate:
+  - Speed improvements using GPU parallelism
+  - Accuracy of GPU computations vs CPU
+  - Real-world performance scaling with matrix size
+
+### When to Use It
+You can use this project to:
+  - Learn how to write CUDA kernels
+  - Benchmark CPU vs GPU computation
+  - Demonstrate parallel computing concepts
 
 <div align="center">
   <a href="https://github.com/mainpratyushhoon/GPU-Programming.git">
-    <img width="80%" alt="image" src="">
+    <img width="45%" align="center" alt="image" src="https://github.com/mainpratyushhoon/GPU-Programming/blob/main/Image/Figure_detail.png">
+    <img width="45%" align="left" alt="image" src="https://github.com/mainpratyushhoon/GPU-Programming/blob/main/Image/ThroughPut.png">
   </a>
 </div>
+<br>
+To produce more such graphs, use:
 
+```sh
+   ./main.exe
+   ```
+then,
+
+ ```sh
+   python graph.py
+   ```
+```sh
+   python throughput.py
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
+<br>
 
 ## Contact
 
