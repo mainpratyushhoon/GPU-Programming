@@ -166,7 +166,7 @@ Honoring the original creator(s) and ideator(s) of this project.
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/cgs-iitkgp/PROJECT_NAME.svg?style=for-the-badge
-[contributors-url]: https://github.com/cgs-iitkgp/PROJECT_NAME/graphs/contributors
+[contributors-url]: https://github.com/mainpratyushhoon/GPU-Programming/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/cgs-iitkgp/PROJECT_NAME.svg?style=for-the-badge
 [forks-url]: https://github.com/cgs-iitkgp/PROJECT_NAME/network/members
 [stars-shield]: https://img.shields.io/github/stars/cgs-iitkgp/PROJECT_NAME.svg?style=for-the-badge
