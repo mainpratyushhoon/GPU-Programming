@@ -55,7 +55,7 @@
   </a>
 </div>
 
-_Detailed explaination of the project goes here_
+_This project implements and compares matrix multiplication on CPU and GPU using NVIDIA's CUDA programming model. The goal is to demonstrate the performance gain achieved through parallel computation and to validate the correctness of GPU computation against a traditional CPU-based approach._
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -64,11 +64,17 @@ _Detailed explaination of the project goes here_
 To set up a local instance of the application, follow the steps below.
 
 ### Prerequisites
-The following dependencies are required to be installed for the project to function properly:
+The following dependencies are required to be installed for the project to function properly:<br>
+1. Go to <a href="https://developer.nvidia.com/cuda-downloads"> NVIDIA CUDA ToolKit </a> <br>
+2. Choose:
+    - OS: Windows
+    - Version: Your Windows version (e.g., 10 or 11)
+    - Installer Type: Network Installer (recommended)
+3. Download and Run the installer.
 <!-- UPDATE -->
-* npm
+* Verify Installation:
   ```sh
-  npm install npm@latest -g
+  nvcc --version
   ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -81,14 +87,9 @@ _Now that the environment has been set up and configured to properly compile and
    ```sh
    git clone https://github.com/mainpratyushhoon/GPU-Programming.git
    ```
-2. Make the script executable
+2. Execute the script
    ```sh
-   cd ./PROJECT_NAME
-   chmod +x ./PROJECT_NAME
-   ```
-3. Execute the script
-   ```sh
-   ./PROJECT_NAME
+   ./main.exe
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -114,14 +115,14 @@ Use this space to show useful examples of how this project can be used. Addition
 The currently active maintainer(s) of this project.
 
 <!-- UPDATE -->
-- [PRATYUSH RAJ](https://github.com/mainpratyushhoon)
+- [Pratyush Raj](https://github.com/mainpratyushhoon)
 
 ### Creator(s)
 
 Honoring the original creator(s) and ideator(s) of this project.
 
 <!-- UPDATE -->
-- [PRATYUSH RAJ](https://github.com/mainpratyushhoon)
+- [Pratyush Raj](https://github.com/mainpratyushhoon)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
