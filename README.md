@@ -73,6 +73,7 @@ The following dependencies are required to be installed for the project to funct
 3. Download and Run the installer.
 <!-- UPDATE -->
 * Verify Installation:
+  
   ```sh
   nvcc --version
   ```
@@ -84,10 +85,12 @@ The following dependencies are required to be installed for the project to funct
 _Now that the environment has been set up and configured to properly compile and run the project, the next step is to install and configure the project locally on your system._
 <!-- UPDATE -->
 1. Clone the repository
+
    ```sh
    git clone https://github.com/mainpratyushhoon/GPU-Programming.git
    ```
-2. Execute the script
+3. Execute the script
+
    ```sh
    ./main.exe
    ```
@@ -119,19 +122,19 @@ You can use this project to:
     <img width="45%" align="left" alt="image" src="https://github.com/mainpratyushhoon/GPU-Programming/blob/main/Image/ThroughPut.png">
   </a>
 </div>
-<br>
+<br />
 To produce more such graphs, use:
 
 ```sh
-   ./main.exe
-   ```
+./main.exe
+```
 then,
 
  ```sh
-   python graph.py
+python graph.py
    ```
 ```sh
-   python throughput.py
+python throughput.py
    ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 <br>
